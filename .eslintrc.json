@@ -18,6 +18,7 @@
     "eslint:recommended", // is ESLint's inbuilt "recommended" config - it turns on a small, sensible set of rules which lint for well-known best-practices.
     "plugin:@typescript-eslint/recommended", // is our "recommended" config - it's similar to eslint:recommended, except it turns on TypeScript-specific rules from our plugin.
     "plugin:@typescript-eslint/recommended-type-checked", //is another recommended configuration we provide. This one contains recommended rules that additionally require type information.
+    "airbnb-base",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
@@ -31,6 +32,7 @@
     "project": "./tsconfig.json" // path
   },
   "rules": {
+    // "prettier/prettier": ["error",{"semi":true}],
     "prettier/prettier": "error",
     "import/extensions": "off",
     "no-console": "off",

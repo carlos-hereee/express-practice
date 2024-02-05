@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 import type { MongoError } from "mongodb";
 import type { Express } from "express";
-import { port, uri, isDev } from "@utils/app/config.js";
+import { port, uri, isDev } from "@utils/app/config";
 
 // mongoose no longer requires these options
 // const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
-export const connectMongoose = async (app: Express) => {
+const connect = async (app: Express) => {
   try {
     await mongoose.connect(uri);
     app.listen(port, () => {
@@ -17,3 +17,4 @@ export const connectMongoose = async (app: Express) => {
     if (isDev) console.log("\n\n*** An error was found***\n\n", err.stack, "\n\n");
   }
 };
+export default connect;

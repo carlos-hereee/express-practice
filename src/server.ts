@@ -3,10 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
-import routes from "@routes/index.js";
-// import { connectMongoose } from "@db/index.js";
-import { clientUrl, clientUrlAlt, allowedMethods } from "@utils/app/config.js";
-// import { deserializeUser } from "@middleware/index.js";
+import routes from "@routes/index";
+import connectMongoose from "@db/index";
+import { clientUrl, clientUrlAlt, allowedMethods } from "@utils/app/config";
 
 // configure envs
 dotenv.config();
@@ -25,10 +24,8 @@ app.use(cors({ credentials: true, origin: [clientUrl, clientUrlAlt], methods: al
 // middleware for all functions
 // app.use(deserializeUser);
 
-const main = () => {
-  // connectMongoose(app);
-  routes(app);
-};
-
-// init app
-main();
+connectMongoose(app)
+  .then(() => routes(app))
+  .catch(() => {
+    throw Error("error occured");
+  });
