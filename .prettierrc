@@ -5,7 +5,5 @@
     "semi": true,
     "bracketSameLine": false,
     "bracketSpacing": true,
-    "endOfLine": "auto",
     "proseWrap": "preserve"
-    ,"arrowParens": "avoid"
 }

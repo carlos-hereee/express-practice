@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import routes from "@routes/index.js";
-import { connectMongoose } from "@db/index.js";
+// import { connectMongoose } from "@db/index.js";
 import { clientUrl, clientUrlAlt, allowedMethods } from "@utils/app/config.js";
 // import { deserializeUser } from "@middleware/index.js";
 
@@ -12,8 +12,6 @@ import { clientUrl, clientUrlAlt, allowedMethods } from "@utils/app/config.js";
 dotenv.config();
 // create an express app
 const app = express();
-
-
 
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(cookieParser());
@@ -28,7 +26,7 @@ app.use(cors({ credentials: true, origin: [clientUrl, clientUrlAlt], methods: al
 // app.use(deserializeUser);
 
 const main = () => {
-  connectMongoose(app);
+  // connectMongoose(app);
   routes(app);
 };
 
