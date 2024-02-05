@@ -10,11 +10,11 @@ export default (app: Express) => {
   app.get("/", (_req: Request, res: Response) => {
     res.status(200).json(`api is running on ${port}`).end();
   });
+};
 //   // authentication route for login and access/refresh tokens
 //   app.use("/auth/", authRoute);
 //   // app data
 //   app.use("/app/", appRoute);
-};
 // // assets route
 // import publicRoute  from "./public";
 // app.use("/public", publicRoute);

@@ -1,4 +1,8 @@
 {  
+  "env": {
+    "node": true
+    ,"es2021":true
+  },
   // generally good ESLint practice to indicate this file is the root-level one used by the project and ESLint should not search beyond this directory for config files.
   "root": true,
 // tells ESLint to use the @typescript-eslint/parser package you installed to parse your source files.
@@ -6,11 +10,16 @@
     // tells ESLint to load the @typescript-eslint/eslint-plugin package as a plugin  
     "plugins": [
         "@typescript-eslint" //This allows you to use typescript-eslint's rules within your codebase.
+        , "prettier", "import"
       ],
       // tells ESLint that your config extends the given configurations.
-    "extends": ["eslint:recommended", // is ESLint's inbuilt "recommended" config - it turns on a small, sensible set of rules which lint for well-known best-practices.
+    "extends": [
+      "eslint:recommended", // is ESLint's inbuilt "recommended" config - it turns on a small, sensible set of rules which lint for well-known best-practices.
         "plugin:@typescript-eslint/recommended", // is our "recommended" config - it's similar to eslint:recommended, except it turns on TypeScript-specific rules from our plugin.
         "plugin:@typescript-eslint/recommended-type-checked", //is another recommended configuration we provide. This one contains recommended rules that additionally require type information.
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
         "plugin:prettier/recommended" ],
     // tells our parser how to find the TSConfig for each source file (true indicates to find the closest tsconfig.json for each source file)
         "parserOptions": {
@@ -19,5 +28,18 @@
         // project: true, // find the tsconfig.json nearest each source file
         ,"project":"./tsconfig.json"   // path
     },
-    "rules": {  "prettier/prettier": "off" , "semi": "off"}
+    "rules": {  "prettier/prettier": "error" , "import/extensions":"off","no-console": "off", "import/order":[
+      "error", {
+        "newlines-between":"never", "groups":[["builtin", "external"],["internal", "parent","sibling", "index"]]
+      }
+    ]}, "settings": {
+      "import/parsers":{
+        "@typescript-eslint/parser":[".ts"]
+      }, "import/resolver":{
+        "typescript":{
+          "alwaysTryTypes":true, 
+          "project": "./tsconfig.json"
+        }
+      }
+    }
 }
