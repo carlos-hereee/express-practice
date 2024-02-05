@@ -1,4 +1,4 @@
-export const connectMongoose = ()=> console.log("connect mongoose")
+export const connectMongoose = (app)=> console.log("connect mongoose")
 
 
 
